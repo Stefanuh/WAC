@@ -1,126 +1,73 @@
 html {
-	font-size: 12px;
-	box-sizing: border-box;
-	  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+	padding: 10px;
+	margin: 0;
 }
 
 body {
-	background-color: #212121;
-}
-
-*, *::before, *::after {
-	margin: 0;
+	background: #eceff1;
 	padding: 0;
-	box-sizing: inherit;
+	margin: 0;
 }
 
-.calculator {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	background-color: white;
+label {
+    display: inline-block;
+    width: 49%;
 }
 
-.calculator-screen {
-	width: 100%;
-	font-size: 5rem;
-	height: 80px;
-	border: none;
-	background-color: #fafafa;
-	color: black;
-	text-align: right;
-	padding-right: 20px;
-	padding-left: 10px;
+.container {
+    width: 30%;
+    margin-bottom: 32px;
 }
 
-button {
-	transition: 200ms;
-	outline: none;
-	height: 60px;
-	background-color: #fff;
-	border-radius: 3px;
-	border: 1px solid #f5f5f5;
-	background-color: transparent;
-	font-size: 2rem;
-	color: #333;
+h2 {
+    background: #A0998D;
+    color: white;
+	margin: 0 0 15px;
+	padding: 5px;
 }
 
-button:hover {
-  background-color: #eaeaea;
+.flag {
+    width: 43px;
+    height: 28px;
+    display: inline-block;
+    background-size: cover;
+    float: right;
 }
 
-.calculator-keys {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 20px;
-	padding: 20px;
+.flag_nl {
+	background-image: url("https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg");
 }
 
-.operator {
-  color: #337cac;
+table tr {
+    text-align: left;
 }
 
-.operator:hover {
-	background: #00675b;
-	color: white;
+table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-
-.all-clear, .equal-sign {
-	color: #fff;
-	
+.c_button {
+    background: #2bb1e4;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    display: block;
+    margin: 15px 0;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: 200ms;
 }
 
-.all-clear {
-	background-color: #d32f2f;
-	transistion: 5ms;
+.c_button:hover {
+    background: black;
+    color: white;
 }
 
-.all-clear:hover {
-	background-color: #9a0007;
-}
-
-.equal-sign {
-	background-color: #2196f3;
-	height: 100%;
-	grid-area: 2 / 4 / 6 / 5;
-}
-
-.equal-sign:hover {
-	background-color: #0069c0;
-}
-
-@media only screen and (max-width: 760px){
-	.calculator{
-	    width: 100%;
-	    height: 100%;
-	    border: 0;
-	    border-radius: 0;
-	}
-	.calculator-screen {
-		height: 30%;
-	}
-	.calculator-keys {
-	    position: absolute;
-	    width: 100%;
-	    bottom: 0;
-	    height: 70%;
-	}
-	button {
-		height: auto;
-		border: 0;
-		font-size: 5vh;
-		
-	}
-	
+.table tbody tr:hover, #city:hover {
+    background-color: #373737;
+    color: white;
+    transition: 100ms;
+    cursor: pointer;
 }
