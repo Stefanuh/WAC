@@ -1,92 +1,78 @@
 <!DOCTYPE html>
-
 <html>
-	<meta charset="UTF-8">
+<head>
+	<meta charset="ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Les 5</title>
+	<title>Weather</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<body>
-	
-		<div id="frame">
-			<div id="myLocation">
-		
-				<h2>Mijn locatie</h2>
-				
-				<div class="container">
-					<label class="title">Landcode:</label>
-					<label class="value" id="country"></label>
-					
-					<label class="title">Land:</label>
-					<label class="value" id="country_name" ></label>
-					
-					<label class="title">Regio:</label>
-					<label class="value" id="region" ></label>
-					
-					<label class="title">Stad:</label>
-					<label class="value" id="city" ></label>
-					
-					<label class="title">Postcode:</label>
-					<label class="value" id="postal" ></label>
-					
-					<label class="title">Latitude:</label>
-					<label class="value" id="latitude" ></label>
-					
-					<label class="title">Longitude:</label>
-					<label class="value" id="longitude" ></label>
-					
-					<label class="title">IP:</label>
-					<label class="value" id="ip" ></label>
-				</div>
-		
-			</div>
-			<div id="weatherInfo">
-				
-				<h2 id="weatherTitle"></h2>
-				
-				<div class="container">
-				
-					<label class="title">Temperatuur:</label>
-					<label class="value" id="temp"></label>
-					
-					<label class="title">Luchtvochtigheid:</label>
-					<label class="value" id="humidity" ></label>
-					
-					<label class="title">Windsnelheid:</label>
-					<label class="value" id="wind_speed" ></label>
-					
-					<label class="title">Windrichting:</label>
-					<label class="value" id="wind_deg" ></label>
-					
-					<label class="title">Zonsopgang:</label>
-					<label class="value" id="sunrise" ></label>
-					
-					<label class="title">Zonsondergang:</label>
-					<label class="value" id="sunset" ></label>
-				</div>
-
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<div id="frame">
+		<div id="myLocation">
+			<h2>Mijn Locatie</h2>
+			<label for="country">Landcode:</label>
+			<label id="country"></label><br/>
 			
-			</div>
-			<div id="countryList">
-				<h2>Beschikbare vakantiebestemmingen</h2>
-				
-				<div class="table">
-					<table id="countryTabel">
-						<thead>
-							<tr>
-								<th>Land</th>
-								<th>Hoofdstad</th>
-								<th>Regio</th>
-								<th>Oppervlakte</th>
-								<th>Inwoners</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-			</div>
+			<label for="country_name">Land:</label>
+			<label id="country_name" ></label><br/>
+					
+			<label for="region">Regio:</label>
+			<label id="region" ></label><br/>
+					
+			<label for="city">Stad:</label>
+			<label id="city" ></label><br/>
+					
+			<label for="postal">Postcode:</label>
+			<label id="postal" ></label><br/>
+					
+			<label for="latitude">Latitude:</label>
+			<label id="latitude" ></label><br/>
+					
+			<label for="longitude">Longitude:</label>
+			<label id="longitude" ></label><br/>
+					
+			<label for="ip">IP:</label>
+			<label id="ip" ></label>
+		</div><!-- --><div id="weatherInfo">
+		<h2 id=weather_location></h2>
+			<label for="temperatuur">Temperatuur:</label>
+			<label id="temperatuur"></label><br/>
+			
+			<label for="luchtvochtigheid">Luchtvochtigheid:</label>
+			<label id="luchtvochtigheid" ></label><br/>
+					
+			<label for="windsnelheid">Windsnelheid:</label>
+			<label id="windsnelheid" ></label><br/>
+					
+			<label for="windrichting">Windrichting:</label>
+			<label id="windrichting" ></label><br/>
+					
+			<label for="zonsopgang">Zonsopgang:</label>
+			<label id="zonsopgang" ></label><br/>
+					
+			<label for="zonsondergang">zonsondergang:</label>
+			<label id="zonsondergang" ></label><br/><br/>
+			
+			<button id="my_weather" class="button button1">Mijn locatie</button>
 		</div>
-	
-	<script src="js/index.js"></script>		
+		<div id="countryList">
+		<h2>Beschikbare Vakantiebestemmingen</h2>
+		<table id="countryTabel">
+		<thead>
+			<tr>
+				<th>Land</th>
+				<th>Hoofdstad</th>
+				<th>Regio</th>
+				<th>Oppervlakte</th>
+				<th>Inwoners</th>
+			</tr>
+			</thead>
+			<tbody>
+			
+			</tbody>
+		</table>
+		</div>
+		</div>
 	</body>
 </html>
