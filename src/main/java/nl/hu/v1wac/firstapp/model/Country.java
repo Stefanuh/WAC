@@ -63,7 +63,7 @@ public class Country {
 		return longitude;
 	}
 	
-	public void setName(String nm) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
@@ -71,7 +71,7 @@ public class Country {
 		this.capital = capital;
 	}
 	
-	public void setRegion(String capital) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
 	

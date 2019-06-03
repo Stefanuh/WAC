@@ -20,8 +20,8 @@ public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDa
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				String code = rs.getString("code");
-				String name = rs.getString("Name");
-				String capital = rs.getString("Capital");
+				String name = rs.getString("name");
+				String capital = rs.getString("capital");
 				String continent = rs.getString("continent");
 				String region = rs.getString("region");
 				double surface = rs.getDouble("surfacearea");

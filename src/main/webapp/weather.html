@@ -1,78 +1,151 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Weather</title>
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<script src="js/index.js"></script>
-</head>
-<body>
-	<div id="frame">
-		<div id="myLocation">
-			<h2>Mijn Locatie</h2>
-			<label for="country">Landcode:</label>
-			<label id="country"></label><br/>
-			
-			<label for="country_name">Land:</label>
-			<label id="country_name" ></label><br/>
-					
-			<label for="region">Regio:</label>
-			<label id="region" ></label><br/>
-					
-			<label for="city">Stad:</label>
-			<label id="city" ></label><br/>
-					
-			<label for="postal">Postcode:</label>
-			<label id="postal" ></label><br/>
-					
-			<label for="latitude">Latitude:</label>
-			<label id="latitude" ></label><br/>
-					
-			<label for="longitude">Longitude:</label>
-			<label id="longitude" ></label><br/>
-					
-			<label for="ip">IP:</label>
-			<label id="ip" ></label>
-		</div><!-- --><div id="weatherInfo">
-		<h2 id=weather_location></h2>
-			<label for="temperatuur">Temperatuur:</label>
-			<label id="temperatuur"></label><br/>
-			
-			<label for="luchtvochtigheid">Luchtvochtigheid:</label>
-			<label id="luchtvochtigheid" ></label><br/>
-					
-			<label for="windsnelheid">Windsnelheid:</label>
-			<label id="windsnelheid" ></label><br/>
-					
-			<label for="windrichting">Windrichting:</label>
-			<label id="windrichting" ></label><br/>
-					
-			<label for="zonsopgang">Zonsopgang:</label>
-			<label id="zonsopgang" ></label><br/>
-					
-			<label for="zonsondergang">zonsondergang:</label>
-			<label id="zonsondergang" ></label><br/><br/>
-			
-			<button id="my_weather" class="button button1">Mijn locatie</button>
+	<head>
+		<meta charset="ISO-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Weather</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+	</head>
+	<body>
+		<div id="frame">
+			<div id="myLocation">
+				<h2>Mijn Locatie</h2>
+				<label for="country">Landcode:</label>
+				<label id="country"></label><br/>
+				
+				<label for="country_name">Land:</label>
+				<label id="country_name" ></label><br/>
+						
+				<label for="region">Regio:</label>
+				<label id="region" ></label><br/>
+						
+				<label for="city">Stad:</label>
+				<label id="city" ></label><br/>
+						
+				<label for="postal">Postcode:</label>
+				<label id="postal" ></label><br/>
+						
+				<label for="latitude">Latitude:</label>
+				<label id="latitude" ></label><br/>
+						
+				<label for="longitude">Longitude:</label>
+				<label id="longitude" ></label><br/>
+						
+				<label for="ip">IP:</label>
+				<label id="ip" ></label>
+			</div><!-- --><div id="weatherInfo">
+			<h2 id=weather_location>Het weer in </h2>
+				<label for="temperatuur">Temperatuur:</label>
+				<label id="temperatuur"></label><br/>
+				
+				<label for="luchtvochtigheid">Luchtvochtigheid:</label>
+				<label id="luchtvochtigheid" ></label><br/>
+						
+				<label for="windsnelheid">Windsnelheid:</label>
+				<label id="windsnelheid" ></label><br/>
+						
+				<label for="windrichting">Windrichting:</label>
+				<label id="windrichting" ></label><br/>
+						
+				<label for="zonsopgang">Zonsopgang:</label>
+				<label id="zonsopgang" ></label><br/>
+						
+				<label for="zonsondergang">zonsondergang:</label>
+				<label id="zonsondergang" ></label><br/><br/>
+				
+				<button id="my_weather" class="button button1">Mijn locatie</button>
+			</div>
 		</div>
+			
+		<h2 class="accordion">Land toevoegen</h2>
+		<div class="panel">
+		 	<form id="countryAddForm">
+	
+			<label for="code_add">Code:</label>
+			<input type="text" name="code" id="code_add">
+			
+			<label for="country_add">Land:</label>
+			<input type="text" name="country" id="country_add">
+					
+			<label for="capital_add">Hoofdstad:</label>
+			<input type="text" name="capital" id="capital_add">
+					
+			<label for="region_add">Regio:</label>
+			<input type="text" name="region" id="region_add">
+					
+			<label for="surface_add">Oppervlakte:</label>
+			<input type="text" name="surface" id="surface_add">
+					
+			<label for="population_add">Inwoners:</label>
+			<input type="text" name="population" id="population_add">
+			
+			<label for="government_add">Regering:</label>
+			<input type="text" name="government" id="government_add">
+			
+			<label for="continent_add">Continent:</label>
+			<input type="text" name="continent" id="continent_add">
+			
+			<div class="modal-footer">
+				<button type="button" id="POST">Voeg toe</button>
+			</div>
+		
+		</form>	
+		</div>
+									
 		<div id="countryList">
-		<h2>Beschikbare Vakantiebestemmingen</h2>
-		<table id="countryTabel">
-		<thead>
-			<tr>
-				<th>Land</th>
-				<th>Hoofdstad</th>
-				<th>Regio</th>
-				<th>Oppervlakte</th>
-				<th>Inwoners</th>
-			</tr>
-			</thead>
-			<tbody>
+			<h2 class="accordion">Beschikbare Vakantiebestemmingen</h2>
+			<div class="panel">
+				<table id="countryTabel">
+				<thead>
+					<tr>
+						<th>Land</th>
+						<th>Hoofdstad</th>
+						<th>Regio</th>
+						<th>Oppervlakte</th>
+						<th>Inwoners</th>
+					</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		
+		<div class="modal" id="modal-update">
+			<div class="modal-head">
+				<h3 id="modal_title">Bewerken</h3>
+				<p id="modal_close">&times;</p>
+			</div>
 			
-			</tbody>
-		</table>
+			<form id="countryForm">
+				<div class="modal-body">
+				<input type="hidden" name="code" id="id" value="">
+				
+				<label for="country_edit">Land:</label>
+				<input type="text" name="name" id="country_edit" value="">
+						
+				<label for="capital_edit">Hoofdstad:</label>
+				<input type="text" name="capital" id="capital_edit" value="">
+						
+				<label for="region_edit">Regio:</label>
+				<input type="text" name="region" id="region_edit" value="">
+						
+				<label for="surface_edit">Oppervlakte:</label>
+				<input type="text" name="surface" id="surface_edit" value="">
+						
+				<label for="population_edit">Inwoners:</label>
+				<input type="text" name="population" id="population_edit" value="">
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="PUT">Wijzig</button>
+				</div>
+			</form>	
+			
 		</div>
-		</div>
+		
 	</body>
+	<script src="js/index.js"></script>
 </html>

@@ -15,14 +15,116 @@ function initPage(){
 	    document.getElementById("latitude").innerHTML = res.data.latitude;
 	    document.getElementById("longitude").innerHTML = res.data.longitude;
 	    document.getElementById("ip").innerHTML = res.data.ip;
-	    
 	    document.getElementById("my_weather").addEventListener("click", function(event) {
 			showWeather(res.data.latitude, res.data.longitude, res.data.city);
 	    });
 	    
 	    showWeather(res.data.latitude, res.data.longitude, res.data.city);
 	    loadCountries();
+
 	}));
+
+	document.querySelector("#modal_close").addEventListener("click", function(event) {
+		document.getElementById("modal-update").style.display = "none";
+	});  		
+
+	updateCountry();
+	addCountry();
+	
+}
+
+function loadCountries(){
+	fetch("http://localhost:8080/firstapp/restservices/countries").then(response => 
+    response.json().then(data => ({
+        data: data,
+        status: response.status
+    })
+    ).then(res => { 
+    	var table = document.getElementById("countryTabel").getElementsByTagName("tbody")[0];
+    	var i = 0;
+    	res.data.forEach(function(element){
+    		var row = table.insertRow();
+    		var name = row.insertCell(0);
+    		var capital = row.insertCell(1);
+    		var region = row.insertCell(2);
+    		var surface = row.insertCell(3);
+    		var population = row.insertCell(4);
+    		var actionChange = row.insertCell(5);
+    		var actionDelete = row.insertCell(6);
+    		
+    		name.innerHTML = element.name;
+    		capital.innerHTML = element.capital;
+    		region.innerHTML = element.region;
+    		surface.innerHTML = element.surface;
+    		population.innerHTML = element.population; 
+    		
+    		actionChange.innerHTML = "<button class='change' id='change-"+ i +"'>Wijzig</button>";
+    		actionDelete.innerHTML = "<button class='delete' id='delete-"+ i +"' data-id='"+ element.code +"'>Verwijder</button>";
+    		
+    		row.addEventListener("click", function(event) {
+    			showWeather(element.latitude, element.longitude, element.capital);
+			});	
+    		
+    		document.getElementById("change-"+i).addEventListener("click", function(event) {
+    			document.getElementById("modal-update").style.display = "block";
+    			document.getElementById("modal_title").innerHTML = "Bewerk "+ element.name;
+    			document.getElementById("id").value = element.code;
+    			document.getElementById("country_edit").value = element.name;
+    			document.getElementById("capital_edit").value = element.capital;
+    			document.getElementById("region_edit").value = element.region;
+    			document.getElementById("surface_edit").value = element.surface;
+    			document.getElementById("population_edit").value = element.population;
+    		});
+    		
+    		// Delete function
+    		document.getElementById("delete-"+i).addEventListener("click", function(){
+    			var id = this.getAttribute("data-id");
+    	  		var fetchoptions = {method: 'DELETE', headers: {'Authorization' : 'Bearer ' + window.sessionStorage.getItem("sessionToken")}};
+    	      	  fetch("restservices/countries/" + id, fetchoptions)
+    	      	  .then(function(response){
+    	      		  if(response.ok)
+    	      			  console.log("Land verwijderd"),
+    	      			  location.reload();
+    	      		  else if (response.status == 404)
+    	      			  console.log("Land niet gevonden");
+    	      		  else console.log("kan land niet verwijderen");
+    	      	  })
+    	      });	
+    		i++;
+    	});
+    }));
+}
+
+
+function updateCountry(){
+	document.querySelector("#PUT").addEventListener("click", function () {
+	  var id = document.querySelector("#id").value;
+	  var formData = new FormData(document.querySelector("#countryForm"));
+	  var encData = new URLSearchParams(formData.entries());
+
+	  fetch("restservices/countries/"+id, { method: 'PUT', body: encData })
+	    .then(response => response.json())
+	    .then(function(myJson) { console.log(myJson); })
+	    
+	    location.reload();
+	  
+	});
+}
+
+function addCountry(){
+  document.querySelector("#POST").addEventListener("click", function (){
+      var formData = new FormData(document.querySelector("#countryAddForm"));
+      var encData = new URLSearchParams(formData.entries());
+            
+      console.log(encData);
+      
+      fetch("restservices/countries/", { method: 'POST', body:encData })
+      .then(response => response.json())
+      .then(function(myJson){ console.log(myJson); });
+     
+      
+      
+	});
 }
 
 function showWeather(latitude, longitude, city){
@@ -69,72 +171,61 @@ function msToTime(UNIX_timestamp){
 	  var sec = a.getSeconds();
 	  var time = hour + ':' + min + ':' + sec ;
 	  return time;
-	}
+}
 
 var degToCard = function(deg){
-	  if (deg>11.25 && deg<33.75){
+  if (deg>11.25 && deg<33.75){
 	    return "NNE";
-  } else if (deg>33.75 && deg<56.25){
-    return "ENE";
-  }else if (deg>56.25 && deg<78.75){
-    return "E";
-  }else if (deg>78.75 && deg<101.25){
-    return "ESE";
-  }else if (deg>101.25 && deg<123.75){
-    return "ESE";
-  }else if (deg>123.75 && deg<146.25){
-    return "SE";
-  }else if (deg>146.25 && deg<168.75){
-    return "SSE";
-  }else if (deg>168.75 && deg<191.25){
-    return "S";
-  }else if (deg>191.25 && deg<213.75){
-    return "SSW";
-  }else if (deg>213.75 && deg<236.25){
-    return "SW";
-  }else if (deg>236.25 && deg<258.75){
-    return "WSW";
-  }else if (deg>258.75 && deg<281.25){
-    return "W";
-  }else if (deg>281.25 && deg<303.75){
-    return "WNW";
-  }else if (deg>303.75 && deg<326.25){
-    return "NW";
-  }else if (deg>326.25 && deg<348.75){
-    return "NNW";
-  }else{
-    return "N"; 
-  }
+	} else if (deg>33.75 && deg<56.25){
+	  return "ENE";
+	}else if (deg>56.25 && deg<78.75){
+	  return "E";
+	}else if (deg>78.75 && deg<101.25){
+	  return "ESE";
+	}else if (deg>101.25 && deg<123.75){
+	  return "ESE";
+	}else if (deg>123.75 && deg<146.25){
+	  return "SE";
+	}else if (deg>146.25 && deg<168.75){
+	  return "SSE";
+	}else if (deg>168.75 && deg<191.25){
+	  return "S";
+	}else if (deg>191.25 && deg<213.75){
+	  return "SSW";
+	}else if (deg>213.75 && deg<236.25){
+	  return "SW";
+	}else if (deg>236.25 && deg<258.75){
+	  return "WSW";
+	}else if (deg>258.75 && deg<281.25){
+	  return "W";
+	}else if (deg>281.25 && deg<303.75){
+	  return "WNW";
+	}else if (deg>303.75 && deg<326.25){
+	  return "NW";
+	}else if (deg>326.25 && deg<348.75){
+	  return "NNW";
+	}else{
+	  return "N"; 
+}
 };
-	
-	function loadCountries(){
-		fetch("http://localhost:8080/firstapp/restservices/countries").then(response => 
-	    response.json().then(data => ({
-	        data: data,
-	        status: response.status
-	    })
-	    ).then(res => { 
-	    	var table = document.getElementById("countryTabel").getElementsByTagName("tbody")[0];
-	    	console.log(res);
-	    	res.data.forEach(function(element){
-	    		console.log(element);
-	    		var row = table.insertRow();
-	    		var name = row.insertCell(0);
-	    		var capital = row.insertCell(1);
-	    		var region = row.insertCell(2);
-	    		var surface = row.insertCell(3);
-	    		var population = row.insertCell(4);
-	    		name.innerHTML = element.countries;
-	    		capital.innerHTML = element.capital;
-	    		region.innerHTML = element.regio;
-	    		surface.innerHTML = element.surface;
-	    		population.innerHTML = element.populatie;
-	    		row.addEventListener("click", function(event) {
-	    			showWeather(element.latitude, element.longitude, element.capital);
-				});
-	    		
-	    	});
-	    }));
-	}
-	
-	initPage();
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+
+    this.classList.toggle("active");
+
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+
+initPage();
+
