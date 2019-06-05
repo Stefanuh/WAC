@@ -9,6 +9,8 @@ public class UserPostgresDaoImpl extends PostgresBaseDao implements UserDao {
 
 	public String findRoleForUser(String name, String pass) {
 		String role = null;
+//		System.out.println(name);
+//		System.out.println(pass);
 
 		try (Connection connection = super.getConnection()) {
 			Statement stmt = connection.createStatement();
@@ -16,6 +18,8 @@ public class UserPostgresDaoImpl extends PostgresBaseDao implements UserDao {
 
 			while (resultset.next()) {
 				role = (resultset.getString("role"));
+//				System.out.println(role);
+
 			}
 			resultset.close();
 			stmt.close();

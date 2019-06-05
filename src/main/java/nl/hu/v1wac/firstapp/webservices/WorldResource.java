@@ -3,6 +3,7 @@ package nl.hu.v1wac.firstapp.webservices;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.security.RolesAllowed;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -113,6 +114,7 @@ public class WorldResource {
 	}
 	
 	@PUT
+	@RolesAllowed("user")
 	@Path("{code}")
 	@Produces("application/json")
 	public Response updateLand(@PathParam("code")String c,
@@ -133,6 +135,7 @@ public class WorldResource {
 		}
 	
 	@DELETE
+	@RolesAllowed("user")
 	@Path("{code}")
 	@Produces("application/json")
 	public Response deleteCountry(@PathParam("code") String c) {
@@ -144,6 +147,7 @@ public class WorldResource {
 	}
 	
 	@POST
+	@RolesAllowed("user")
 	@Produces("application/json")
 	public Response addCountry(@FormParam("code")String c,
 							   @FormParam("country")String nm,

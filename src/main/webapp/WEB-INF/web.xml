@@ -19,6 +19,15 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee web-app_4_0.xsd" version=
 
 <load-on-startup>1</load-on-startup>
 
+
+<init-param>
+
+<param-name>jersey.config.server.provider.classnames</param-name>
+
+<param-value>org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature</param-value>
+
+</init-param>
+
 </servlet>
 
 <servlet-mapping>
