@@ -37,8 +37,7 @@ public class AuthenticationResource {
 			String token = createToken(username, role);
 			
 			SimpleEntry<String, String> JWT = new SimpleEntry<String, String>("JWT", token);
-			System.out.println(JWT);
-
+			
 			return Response.ok(JWT).build();
 		
 		}catch(JwtException | IllegalArgumentException e)

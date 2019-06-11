@@ -142,7 +142,6 @@ function login(event){
 	            return response.json();
 	          else throw "Wrong username/password";
 	    })
-
 	            .then(myToken => window.sessionStorage.setItem("sessionToken", myToken.JWT))
 	            .catch(error => console.log(error));
 	    });
